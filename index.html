@@ -1,0 +1,478 @@
+<html><head><base href="/" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Designo - Agência de Marketing Digital</title>
+<style>
+:root {
+  --primary: #111111;
+  --primary-light: #222222;
+  --accent: #60a5fa;
+  --dark: #000000;
+  --light: #ffffff;
+  --text: #111111;
+  --gray: #666666;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  line-height: 1.6;
+  color: var(--text);
+  background-color: var(--light);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Header */
+header {
+  background-color: rgba(255, 255, 255, 0.98);
+  padding: 1.5rem 0;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: var(--primary);
+  text-transform: uppercase;
+  letter-spacing: -1px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 2.5rem;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: var(--gray);
+  font-weight: 600;
+  font-size: 1rem;
+  transition: color 0.3s ease;
+  text-transform: uppercase;
+}
+
+.nav-links a:hover {
+  color: var(--accent);
+}
+
+/* Hero Section */
+.hero {
+  padding: 200px 0 150px;
+  background: linear-gradient(45deg, #f8faff, #ffffff);
+  text-align: center;
+}
+
+.hero h1 {
+  font-size: 5rem;
+  margin-bottom: 2rem;
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -2px;
+  background: linear-gradient(45deg, var(--primary), var(--accent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero p {
+  font-size: 1.5rem;
+  margin-bottom: 3rem;
+  color: var(--gray);
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+  font-weight: 500;
+}
+
+/* Services Section */
+.services {
+  padding: 120px 0;
+  background: #f8faff;
+}
+
+.services h2 {
+  text-align: center;
+  margin-bottom: 4rem;
+  font-size: 3.5rem;
+  letter-spacing: -1px;
+  font-weight: 800;
+  background: linear-gradient(45deg, var(--primary), var(--accent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.service-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2.5rem;
+  margin-top: 3rem;
+}
+
+.service-card {
+  padding: 3rem;
+  border-radius: 20px;
+  background: white;
+  transition: all 0.4s ease;
+  border: none;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+  cursor: pointer;
+}
+
+.service-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+}
+
+.service-card h3 {
+  color: var(--primary);
+  margin-bottom: 1.5rem;
+  font-size: 1.8rem;
+  font-weight: 700;
+}
+
+.service-card p {
+  color: var(--gray);
+  font-size: 1.1rem;
+}
+
+/* CTA Button */
+.cta-button {
+  display: inline-block;
+  padding: 1.2rem 2.5rem;
+  background: var(--accent);
+  color: white;
+  text-decoration: none;
+  border-radius: 50px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.cta-button:hover {
+  background: #3b82f6;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(59,130,246,0.3);
+}
+
+/* Footer */
+footer {
+  background: var(--primary);
+  color: white;
+  padding: 100px 0;
+  margin-top: 100px;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 4rem;
+}
+
+.footer-grid h3 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  font-weight: 800;
+}
+
+.footer-grid h4 {
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+  color: var(--accent);
+}
+
+.social-links {
+  display: flex;
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+/* Modal styles */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  z-index: 2000;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.modal.active {
+  display: flex;
+  opacity: 1;
+}
+
+.modal-content {
+  background: white;
+  padding: 2rem; /* Updated */
+  border-radius: 20px;
+  max-width: 500px; /* Updated */
+  width: 90%;
+  margin: auto;
+  position: relative;
+  transform: translateY(-50px);
+  transition: transform 0.3s ease;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+}
+
+.modal.active .modal-content {
+  transform: translateY(0);
+}
+
+.modal-content h3 {
+  font-size: 2rem; /* Updated */
+  margin-bottom: 1rem; /* Updated */
+  color: var(--primary);
+  font-weight: 800;
+}
+
+.modal-content p {
+  font-size: 1rem; /* Updated */
+  margin-bottom: 1.5rem; /* Updated */
+  color: var(--gray);
+}
+
+.modal-content ul {
+  margin-bottom: 1.5rem; /* Updated */
+  padding-left: 1.5rem;
+}
+
+.modal-content ul li {
+  margin-bottom: 0.5rem; /* Updated */
+  font-size: 1rem; /* Updated */
+  color: var(--gray);
+}
+
+.close-modal {
+  position: absolute;
+  top: 1rem; /* Updated */
+  right: 1rem; /* Updated */
+  font-size: 1.5rem; /* Updated */
+  cursor: pointer;
+  border: none;
+  background: none;
+  color: var(--gray);
+  transition: color 0.3s ease;
+}
+
+.close-modal:hover {
+  color: var(--primary);
+}
+
+@media (max-width: 768px) {
+  .nav-links {
+    display: none;
+  }
+  
+  .hero h1 {
+    font-size: 3.5rem;
+  }
+  
+  .hero p {
+    font-size: 1.2rem;
+  }
+  
+  .services h2 {
+    font-size: 2.8rem;
+  }
+}
+</style>
+<script type="text/javascript" nonce="9d9de267ad29402dbfd4b3df21c" src="//local.adguard.org?ts=1732551823286&amp;type=content-script&amp;dmn=party.websim.ai&amp;url=https%3A%2F%2Fparty.websim.ai%2Fapi%2Fv1%2Fsites%2FlvdZFjyzZSrKxKlyn%2Fhtml&amp;app=com.android.chrome&amp;css=3&amp;js=1&amp;rel=1&amp;rji=1&amp;sbe=0"></script><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header>
+    <div class="container">
+      <nav>
+        <div class="logo">Designo</div>
+        <div class="nav-links">
+          <a href="#home">Home</a>
+          <a href="#sobre">Sobre</a>
+          <a href="#servicos">Serviços</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero" id="home">
+    <div class="container">
+      <h1>Transforme sua presença digital</h1>
+      <p>Soluções de marketing digital personalizadas para impulsionar seu negócio ao próximo nível</p>
+      <a href="https://wa.me/5511947968158" class="cta-button">Agende uma Reunião</a>
+    </div>
+  </section>
+
+  <section class="services" id="servicos">
+    <div class="container">
+      <h2>Nossos Serviços</h2>
+      <div class="service-grid">
+        <div class="service-card" data-service="social">
+          <h3>Gestão de Redes Sociais</h3>
+          <p>Criamos e gerenciamos conteúdo relevante para suas redes sociais.</p>
+        </div>
+        <div class="service-card" data-service="traffic">
+          <h3>Tráfego Pago</h3>
+          <p>Campanhas otimizadas para Google Ads e redes sociais.</p>
+        </div>
+        <div class="service-card" data-service="seo">
+          <h3>SEO</h3>
+          <p>Otimização para motores de busca e aumento de tráfego orgânico.</p>
+        </div>
+        <div class="service-card" data-service="design">
+          <h3>Design Gráfico</h3>
+          <p>Criação de materiais visuais impactantes para sua marca.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Modals -->
+  <div class="modal" id="socialModal">
+    <div class="modal-content">
+      <button class="close-modal">&times;</button>
+      <h3>Gestão de Redes Sociais</h3>
+      <p>Nossa gestão profissional de redes sociais vai muito além de apenas postar conteúdo. Desenvolvemos uma estratégia personalizada que inclui:</p>
+      <ul>
+        <li>Planejamento estratégico de conteúdo</li>
+        <li>Criação de conteúdo envolvente e relevante</li>
+        <li>Gestão de comunidade e engajamento</li>
+        <li>Análise de métricas e resultados</li>
+        <li>Relatórios mensais de performance</li>
+      </ul>
+      <a href="https://wa.me/5511947968158" class="cta-button">Fale conosco no WhatsApp</a>
+    </div>
+  </div>
+
+  <div class="modal" id="trafficModal">
+    <div class="modal-content">
+      <button class="close-modal">&times;</button>
+      <h3>Tráfego Pago</h3>
+      <p>Maximize seu ROI com nossas campanhas de tráfego pago estrategicamente otimizadas:</p>
+      <ul>
+        <li>Análise detalhada do público-alvo</li>
+        <li>Estratégias personalizadas para Google Ads e Meta Ads</li>
+        <li>Otimização contínua de campanhas</li>
+        <li>Monitoramento de conversões</li>
+        <li>Relatórios detalhados de performance</li>
+      </ul>
+      <a href="https://wa.me/5511947968158" class="cta-button">Fale conosco no WhatsApp</a>
+    </div>
+  </div>
+
+  <div class="modal" id="seoModal">
+    <div class="modal-content">
+      <button class="close-modal">&times;</button>
+      <h3>SEO</h3>
+      <p>Aumente sua visibilidade orgânica e autoridade online com nossa estratégia completa de SEO:</p>
+      <ul>
+        <li>Auditoria técnica completa</li>
+        <li>Pesquisa avançada de palavras-chave</li>
+        <li>Otimização on-page e off-page</li>
+        <li>Criação de conteúdo otimizado</li>
+        <li>Construção de backlinks de qualidade</li>
+      </ul>
+      <a href="https://wa.me/5511947968158" class="cta-button">Fale conosco no WhatsApp</a>
+    </div>
+  </div>
+
+  <div class="modal" id="designModal">
+    <div class="modal-content">
+      <button class="close-modal">&times;</button>
+      <h3>Design Gráfico</h3>
+      <p>Transforme sua identidade visual com designs profissionais e impactantes:</p>
+      <ul>
+        <li>Criação de identidade visual</li>
+        <li>Design para redes sociais</li>
+        <li>Material institucional</li>
+        <li>Peças publicitárias</li>
+        <li>Templates personalizados</li>
+      </ul>
+      <a href="https://wa.me/5511947968158" class="cta-button">Fale conosco no WhatsApp</a>
+    </div>
+  </div>
+
+  <footer>
+    <div class="container footer-grid">
+      <div>
+        <h3>Designo</h3>
+        <p>Transformando sua presença digital</p>
+      </div>
+      <div>
+        <h4>Contato</h4>
+        <p>WhatsApp: (11) 94796-8158</p>
+        <div class="social-links">
+          <a href="https://www.instagram.com/designobr" class="cta-button">Instagram</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+          behavior: 'smooth'
+        });
+      });
+    });
+
+    // New modal functionality
+    const serviceCards = document.querySelectorAll('.service-card');
+    const modals = document.querySelectorAll('.modal');
+    const closeButtons = document.querySelectorAll('.close-modal');
+
+    const modalMap = {
+      'social': 'socialModal',
+      'traffic': 'trafficModal',
+      'seo': 'seoModal',
+      'design': 'designModal'
+    };
+
+    serviceCards.forEach(card => {
+      card.addEventListener('click', () => {
+        const modalId = modalMap[card.dataset.service];
+        document.getElementById(modalId).classList.add('active');
+      });
+    });
+
+    closeButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        button.closest('.modal').classList.remove('active');
+      });
+    });
+
+    window.addEventListener('click', (e) => {
+      modals.forEach(modal => {
+        if (e.target === modal) {
+          modal.classList.remove('active');
+        }
+      });
+    });
+  </script>
+</body></html>
